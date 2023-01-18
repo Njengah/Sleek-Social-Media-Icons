@@ -68,12 +68,13 @@ class Sleek_Social_Media_Icons_Widget extends WP_Widget {
         }
 
         $SSIconSStyles_background = ! empty( $instance['sleek-social-icons-background'] ) ? $instance['sleek-social-icons-background'] : '';
-
+        $SSIconSStyles_color = ! empty( $instance['sleek-social-icons-color'] ) ? $instance['sleek-social-icons-color'] : '';
         echo $SSIconSStyles_background; ?>
 
            <style>
             .sleek-social-media-icons a{
-                background-color: <?php echo esc_html($SSIconSStyles_background); ?>
+                background-color: <?php echo esc_html($SSIconSStyles_background); ?>;
+                color: <?php echo esc_html($SSIconSStyles_color); ?> ; 
             }
 
             </style>
@@ -115,6 +116,7 @@ class Sleek_Social_Media_Icons_Widget extends WP_Widget {
         $youtube = ! empty( $instance['youtube'] ) ? $instance['youtube'] : '';
         $whatsapp = ! empty( $instance['whatsapp'] ) ? $instance['whatsapp'] : '';
         $sleeksocialbg = ! empty( $instance['sleek-social-icons-background'] ) ? $instance['sleek-social-icons-background'] : '';
+        $sleeksocialclr = ! empty( $instance['sleek-social-icons-color'] ) ? $instance['sleek-social-icons-color'] : '';
 
         echo '$sleeksocialbg'; 
         ?>
@@ -152,12 +154,23 @@ class Sleek_Social_Media_Icons_Widget extends WP_Widget {
         <h3 class="sleek-social-icons-widget-h3-admin-header"> Style Settings </h3> <hr> 
 
         <p>
-            <label for="<?php echo $this->get_field_id( 'sleek-social-icons-background' ); ?>"><?php _e( 'Icons Background Color:' ); ?></label>
-            <input class="sleek-social-icons-widget-color-picker " 
+            <label for="<?php echo $this->get_field_id( 'sleek-social-icons-background' ); ?>">
+            <?php _e( 'Icons Background:' ); ?></label>
+            <input class="sleek-social-icons-widget-color-picker" 
             id="<?php echo $this->get_field_id( 'sleek-social-icons-background' ); ?>" 
             name="<?php 
             echo $this->get_field_name( 'sleek-social-icons-background' ); ?>" 
             type="text" value="<?php echo sanitize_text_field( $sleeksocialbg ); ?>">
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id( 'sleek-social-icons-color' ); ?>">
+            <?php _e( 'Icons Font Color:' ); ?></label>
+            <input class="sleek-social-icons-widget-color-picker" 
+            id="<?php echo $this->get_field_id( 'sleek-social-icons-color' ); ?>" 
+            name="<?php 
+            echo $this->get_field_name( 'sleek-social-icons-color' ); ?>" 
+            type="text" value="<?php echo sanitize_text_field( $sleeksocialclr ); ?>">
         </p>
 <?php 
 
@@ -185,6 +198,8 @@ class Sleek_Social_Media_Icons_Widget extends WP_Widget {
         $instance['youtube'] = ! empty( $new_instance['youtube'] ) ? esc_url_raw( $new_instance['youtube'] ) : '';
         $instance['whatsapp'] = ! empty( $new_instance['whatsapp'] ) ? esc_url_raw( $new_instance['whatsapp'] ) : '';
         $instance['sleek-social-icons-background'] = ! empty( $new_instance['sleek-social-icons-background'] ) ? esc_url_raw( $new_instance['sleek-social-icons-background'] ) : '';
+        $instance['sleek-social-icons-color'] = ! empty( $new_instance['sleek-social-icons-color'] ) ? esc_url_raw( $new_instance['sleek-social-icons-color'] ) : '';
+
         return $instance;
     }
     
@@ -235,7 +250,8 @@ function sleek_social_media_icons_widget_enqueue_admin_scripts(){
     wp_enqueue_style('wp-color-picker');
         wp_enqueue_script('wp-color-picker', false, array('jquery'));
 
-    wp_enqueue_style( 'admin-sleek-social-icons-widget-styles',  $plugin_url . 'assets/admin/css/admin-sleek-social-icons-widget-styles.css',  array(), '1.0.0', false ); 
+    wp_enqueue_style( 'admin-sleek-social-icons-widget-styles',  $plugin_url . 'assets/admin/css/admin-sleek-social-icons-widget-styles.css',  array(), '1.0.0', false );
+    wp_enqueue_script( 'admin-sleek-social-icons-widget-scripts',  $plugin_url . 'assets/admin/js/admin-sleek-social-icons-widget-scripts.js', array( 'jquery' ), '1.0.0', false );  
 }
 add_action( 'admin_enqueue_scripts', 'sleek_social_media_icons_widget_enqueue_admin_scripts' );
 
