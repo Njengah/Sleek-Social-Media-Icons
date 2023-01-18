@@ -1,0 +1,23 @@
+/**
+ * Custom Styles for the Sleek Social Media Icons Widget 
+ */
+
+.sleek-social-media-icons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1px;
+}
+
+.sleek-social-media-icons a {
+    text-align: center;
+}
+
+
+.sleek-social-media-icons a {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.5em;
+    color: #fff;
+    background-color: #47a3a8;
+
+}
