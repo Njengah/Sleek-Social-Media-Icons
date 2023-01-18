@@ -228,7 +228,7 @@ add_action( 'wp_enqueue_scripts', 'sleek_social_media_icons_enqueue_fontawesome'
  *  Add the admin css styles 
  */
 
-function sleek_social_media_icons_widget_enqueue_color_picker(){
+function sleek_social_media_icons_widget_enqueue_admin_scripts(){
 
     $plugin_url = plugin_dir_url( __FILE__ );
 
@@ -237,7 +237,7 @@ function sleek_social_media_icons_widget_enqueue_color_picker(){
 
     wp_enqueue_style( 'admin-sleek-social-icons-widget-styles',  $plugin_url . 'assets/admin/css/admin-sleek-social-icons-widget-styles.css',  array(), '1.0.0', false ); 
 }
-add_action( 'admin_enqueue_scripts', 'sleek_social_media_icons_widget_enqueue_color_picker' );
+add_action( 'admin_enqueue_scripts', 'sleek_social_media_icons_widget_enqueue_admin_scripts' );
 
 
 
